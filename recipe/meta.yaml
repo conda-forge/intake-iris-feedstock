@@ -11,16 +11,16 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3
+    - python {{ python_min }}
     - pip
     - jinja2
   run:
-    - python >=3
+    - python >={{ python_min }}
     - intake >=0.2
     - scipy
     - iris
@@ -30,6 +30,7 @@ test:
     - tests
   requires:
     - pytest
+    - python {{ python_min }}
   commands:
     - pytest
 
